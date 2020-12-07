@@ -99,11 +99,13 @@ $categories = $statement->fetchAll();
 			<section id="posts" >
 				<h3 id="Posts">Recent Posts</h3>
 				<section id ="categories">
-					<h4>View Ads by Category</h4>
+					<h4>View Ads by Category</h4><br>
 					<?php foreach($categories as $category): ?>
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
-	         		<?php endforeach ?>
-	         		        	
+	         		<?php endforeach; ?>
+	         		<h4>Filter Ads</h4>
+	         			<a href="index.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
+
 				</section>
 
 				<?php foreach ($posts as $post): ?>	
