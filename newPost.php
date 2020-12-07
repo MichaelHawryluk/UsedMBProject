@@ -70,13 +70,15 @@
 					<?php endif ?>
 							<label for="title">Title</label>
 							<input name="title" id="title" type="text"><br><br>
+							<label for="price">Price in $(CAD)</label>
+							<input name="price" id="price" type="number"><br><br>
 							<label id="category">Category</label>
 							<select class="form-control" name="category" id="categoryDropDown">
 							<?php foreach($categories as $category): ?>
 	            				<option>
 	              						<?= $category['categoryType'] ?>
 	            				</option>
-	         		 			<?php endforeach ?>
+	         		 			<?php endforeach; ?>
 	         		 		</select><br><br>
 							<label  id="upload">Upload Pictures</label><br>
 							<input id="picturePath" type="file" name="picturePath">
@@ -101,5 +103,9 @@
 			</footer>
 		</form>
 	</section>
+	<script src="ckeditor5/ckeditor.js"></script>
+<script>	
+	ClassicEditor.create(document.getElementById('description'));
+</script>
 </body>
 </html>

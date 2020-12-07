@@ -61,18 +61,21 @@
   
    <form id="inventory" method="POST" action="updateDelete.php">
          <fieldset>
-            <h4><?= $show['title'] ?></h4>
-            <p>
-               <small>
-                  <?= $show['description']  ?>              
-                  <!-- Edit link for the record -->
-                  <a href="edit.php?postId=<?= $postId ?>">edit</a><br><br>
+            <div class="title"><p><?= $show['title'] ?></p></div>
 
+                  <?= $show['description'] ?><br>
+                  <?php if($show['picturePath'] != null): ?>
+                      <div class="picture">
+                        <img src="uploads/<?=$show['picturePath']?>" alt="image">
+                      </div>
+                    <?php endif; ?>
+                  <a href="edit.php?postId=<?= $postId ?>">edit</a><br>         
+                  <!-- Edit link for the record -->        
+                  <small>
                   <!-- Format for the date from the database timestamp-->
-                  <?=date("F j, Y, h:i A",strtotime(($show['date']))) ?>
-
+                  <br><?=date("F j, Y, h:i A",strtotime(($show['date']))) ?>
                </small>
-            </p>
+
             <div id="blog_content">
                
             </div>            

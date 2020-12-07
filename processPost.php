@@ -2,8 +2,12 @@
 //Include Composer autoload
 require 'vendor/autoload.php';
 
+//Connects to database
+require ('connect.php');
+
 //import the Intervention Image Manager Class
 use Intervention\Image\ImageManagerStatic as Image;
+
 
 //builds a path string that uses slashes for the appropriate OS
 //default path is 'uploads' subfolder in the current folder.
@@ -80,46 +84,133 @@ if($imageUploaded) {
   	}
 
   }
+  if($_POST['command'] === "Post Ad")
+  	{
+		//Checks to see if the form was post and if the fields were not empty
+		if($_POST && (!empty($_POST['title']) && (!empty($_POST['description']) )))
+		{
+			//print_r($_POST);
+			//print_r($_FILES);
+			//exit;
 
+			//Sets and sanitizes title and content
+			$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$description = $_POST['description'];
+			$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+			$picture = $_FILES['picturePath']['name'];
 
+			//Creates an insert statement to insert the new record into the database
+			$query = "INSERT INTO posts (title, price, description, category, picturePath) VALUES (:title, :price, :description, :category, :picturePath)";
+			$statement = $db->prepare($query);
+			$statement->bindValue(':title', $title);
+			$statement->bindValue(':price', $price);
+			$statement->bindValue(':category', $category);
+			$statement->bindValue(':description', $description);
+			$statement->bindValue(':picturePath', $picture);
 
+			$statement->execute();
 
+			header("Location: index.php");
+			exit;
+		}
+	}
 
-	//Checks to see if the form was post and if the fields were not empty
-	if($_POST && (!empty($_POST['title']) && (!empty($_POST['description']))))
+	//Checks to see if the Update button was clicked
+	if($_POST['command'] === "Update")
 	{
-		//print_r($_POST);
-		//print_r($_FILES);
-		//exit;
-
-		//Connects to database
-		require ('connect.php');
-
-		//Sets and sanitizes title and content
+		//Filters the title, description and the id to store in the database
 		$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_INT);
+		if(isset($_FILES['picturePath']))
+		{
+			$picturePath = $_FILES['picturePath']['name'];
+		}
+		else
+		{
+			$picturePath = filter_input(INPUT_POST, 'picturePath', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		}
 		$description = $_POST['description'];
-		$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-		$picture = $_FILES['picturePath']['name'];
+		$postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_NUMBER_INT);
 
-		//Creates an insert statement to insert the new record into the database
-		$query = "INSERT INTO posts (title, description, category, picturePath) VALUES (:title, :description, :category, :picturePath)";
-		$statement = $db->prepare($query);
-		$statement->bindValue(':title', $title);
-		$statement->bindValue(':category', $category);
-		$statement->bindValue(':description', $description);
-		$statement->bindValue(':picturePath', $picture);
+		//Creates a Update statement, to update the record with that id in the database
+		$updateQuery = "UPDATE posts SET title = :title, price = :price, description = :description, picturePath = :picturePath  WHERE postId = :postId";
+		$updateStatement = $db->prepare($updateQuery);
+		$updateStatement->bindValue(':title', $title);
+		$updateStatement->bindValue(':price', $price);
+		$updateStatement->bindValue(':description', $description);
+		$updateStatement->bindValue(':picturePath', $picturePath);
+		$updateStatement->bindValue(':postId', $postId, PDO::PARAM_INT);
 
-		$statement->execute();
+		$updateStatement->execute();
+
+
 
 		header("Location: index.php");
 		exit;
-		
+	
+	//print_r($updateStatement->errorInfo());
 	}
+
+
 	//If content or title was not filled out, outputs this error.
 	else
 	{
 		$message = "Title and description cannot be blank.";
 	}
+
+		//Checks to see if the Delete button was clicked
+	if($_POST['command'] === "Delete")
+	{
+		//Sets and sanitizes the id
+		$postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_NUMBER_INT);
+		$picturePath = filter_input(INPUT_POST, 'picturePath', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
+		//Creates a Delete statement, to remove the record with that id from the database
+		$deleteQuery = "DELETE FROM posts WHERE postId = :postId LIMIT 1";
+		$deleteStatement = $db->prepare($deleteQuery);
+		$deleteStatement->bindValue(':postId', $postId, PDO::PARAM_INT);
+		$deleteStatement->execute();
+		header("Location: index.php");
+
+		$path = "uploads/".$picturePath;
+		if(!unlink($path)) {
+			echo"you have an error";
+		} else {
+			header("Location: index.php");
+		}
+
+		//print_r($deleteStatement->errorInfo());
+
+		exit;
+	}
+
+	elseif($_POST['command'] === "Delete Picture")
+	{
+		$postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_NUMBER_INT);
+		$picturePath = filter_input(INPUT_POST, 'picturePath', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+		$deleteQuery = "UPDATE posts SET picturePath = :picturePath=NULL WHERE postId = :postId";
+		$deleteStatement = $db->prepare($deleteQuery);
+		$deleteStatement->bindValue(':picturePath', $picturePath);
+		$deleteStatement->bindValue(':postId', $postId);
+		$deleteStatement->execute();
+
+		$path = "uploads/".$picturePath;
+		if(!unlink($path)) {
+			echo"you have an error";
+		} else {
+			header("Location: index.php");
+		}
+
+		//print_r($deleteStatement->errorInfo());
+		
+
+		exit;
+	}
+	
+
 
 ?>
 <!DOCTYPE HTML>

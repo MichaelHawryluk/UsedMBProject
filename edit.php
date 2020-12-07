@@ -22,7 +22,15 @@
 		echo $text;
 	}
 
+  // Query all the categories from the database.
+  $query = "SELECT * FROM categories ORDER BY categoryType";
+  $statement = $db->prepare($query);
+  $statement->execute();
 
+  // Fetch the returned provinces as an array of hashes.
+  $categories = $statement->fetchAll();
+
+  $error = false;
 
 	//$description = htmlspecialchars_decode($select['description']);
 
@@ -63,7 +71,7 @@
 	</section>
 
 		
-	<form id="editPost" method="POST" enctype= "multipart/form-data" action="updateDelete.php">
+	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processPost.php">
 		
 			<section id="content">
 				<section id="searchNav">
@@ -75,6 +83,15 @@
 				<fieldset>
 					<label>Title</label>
 					<input id="title" name="title" value="<?=$select['title'] ?>" />
+					<label for="price">Price in $(CAD)</label>
+					<input name="price" id="price" type="number" value="<?=$select['price'] ?>"/><br><br>
+					<select class="form-control" name="category" id="categoryDropDown">
+						<?php foreach($categories as $category): ?>
+	            			<option>
+	              					<?= $category['categoryType'] ?>
+	            			</option>
+	         		 		<?php endforeach; ?>
+	         		 </select><br><br>
 					<label>Description</label>
 					<textarea id="description" name="description" rows="15" cols="30"><?= $select['description']?></textarea>
 					<?php if($select['picturePath'] != null): ?>
@@ -82,11 +99,15 @@
 												<img src="uploads/<?=$select['picturePath']?>" alt="image">
 												<input type="submit" id="DeletePic" name="command" value="Delete Picture"onclick="return confirm('Are you sure you want to delete this picture?')"/>
 											</div>
+					<?php else: ?>
+						<label  id="upload">Upload Pictures</label><br>
+							<input id="picturePath" type="file" name="picturePath">
 					<?php endif; ?>
 					<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
 					<input type="hidden" name="picturePath" value="<?= $select['picturePath'] ?>" />
 
-					<input type="submit" id="Update" name="command" Value="Update" />
+					<input type="submit" id="Update" name="command" value="Update" />
+				
 					<input type="submit" id="Delete" name="command" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')"/>
 					
 				</fieldset>

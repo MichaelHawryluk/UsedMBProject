@@ -102,16 +102,17 @@ $categories = $statement->fetchAll();
 					<h4>View Ads by Category</h4>
 					<?php foreach($categories as $category): ?>
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
-	         		<?php endforeach ?>        	
+	         		<?php endforeach ?>
+	         		        	
 				</section>
 
 				<?php foreach ($posts as $post): ?>	
-					<table>				
+				<br><table>				
 							<tbody class="adBody">			
 								<tr>
 									<th>
 										<!-- EDIT THE POST --->
-										<p class="title"><a href="show.php?postId=<?= $post['postId']?>"><?= $post['title'] ?></a></p>
+										<p class="title"><a href="show.php?postId=<?= $post['postId']?>"><?= $post['title']?></a>$<?=$post['price']?></p>
 										<p class="category"><?= $post['category']?></p>
 									</th>
 								</tr>
