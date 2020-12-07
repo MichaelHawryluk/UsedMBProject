@@ -1,0 +1,12 @@
+/*
+* UsedMB Contact Form Validation
+*
+* Script: Mike Hawryluk
+* Author: Mike Hawryluk
+* Version: 1.0
+* Date created: 20.06.2019
+* Last Updated: 20.06.2019
+*/
+
+ //Add the event listener for the document load
+document.addEventListener("DOMContentLoaded", load );

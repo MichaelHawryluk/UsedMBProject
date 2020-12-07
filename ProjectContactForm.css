@@ -1,0 +1,290 @@
+body
+{
+	font-family: helvetica, sans serif;
+	color: #fff;
+	background-color: #333131;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+header
+{
+	text-align: center;
+	margin: 0px;
+	padding: 5px;
+	height: 140px;
+	background-color: #027223;
+	width: 100%;
+	color: #fff;
+	border: 2px solid black;
+}
+
+.error
+{
+	color: #f442b3;
+	font-weight: bold;
+	display: none;
+}
+
+h1
+{
+	text-align: center;
+	font-size: 2em;
+}
+
+#navBar 
+{
+	flex-wrap: nowrap;
+	width: 99.7%;
+	padding: 0px 15px 0px 0px; 
+	margin: 0px auto;
+	font-size: 1em;
+	transition: 0.45s;
+}
+
+#navBar ul
+{
+	margin-left: -50px;
+	list-style: none;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+}
+
+#navBar ul li
+{
+	border: 1px solid black;
+	padding: 4px;
+}
+
+#navBar ul li:first-of-type
+{
+	border: none;
+}
+
+#navBar ul li:nth-of-type(2)
+{
+	border-top: 2px solid black;
+}
+
+#navBar ul li:nth-of-type(4)
+{
+	border-bottom: none;
+}
+
+#navBar ul li a
+{
+	text-decoration: none;
+	color: #edf0f4;
+}
+
+#navBar ul li a:hover
+{
+	color: #DB2976;
+}
+
+form
+{
+	background-color: #01441c;
+	padding: 15px;
+	border: 3px solid black;
+}
+
+form fieldset
+{
+	border: none;
+}
+
+form legend
+{
+	font-size: 1.5em;
+}
+
+#contact
+{
+	width: 75%;
+	margin: 5px auto;
+}
+
+#contact ul
+{
+	list-style: none;
+}
+
+#contact li
+{
+	padding: 5px;
+}
+
+#name, #email, #date, #phone, #comments
+{
+	padding: 5px;
+	margin: 15px;
+}
+
+textarea
+{
+	vertical-align: top;
+	display: block;
+	width: 45%;
+}
+
+button
+{
+	float:right;
+	padding: 4px 7px;
+	margin: 10px 0px 0px 8px;
+	background-color: #DB2976;
+}
+
+footer
+{
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+	font-size: 0.9em;
+}
+
+
+footer
+{
+	margin: 5px auto;
+	width: 75%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	justify-content: center;
+	padding: 10px;
+	font-size: 0.9em;
+	flex-wrap: nowrap;
+}
+
+#navBar2 ul
+{
+	list-style: none;
+}
+
+#navBar2 a
+{	
+	color:#eee;
+	text-decoration: none;
+}
+
+#navBar2
+{
+	margin: 0px auto;
+	border: none;
+	position: relative;
+	right: 50px;
+}
+
+#navBar2 li
+{
+	margin: 5px auto;
+}
+
+#navBar2 li:hover
+{
+	background-color: #DB2976;
+}
+
+
+footer p, h6
+{
+	position: relative;
+	top: 70px;
+	margin: 10px auto;
+}
+
+
+@media(min-width: 640px)
+{
+	header 
+	{
+		font-size: 1.2em;
+		height: 26px;
+	}
+
+	#navBar ul
+	{
+		width: 75%;
+		justify-content: space-between;
+		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0px;
+		margin: 2px auto;
+	}
+
+	#navBar ul li 
+	{
+		border: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	#navBar ul li:nth-of-type(2)
+	{
+		border: none;
+	}
+
+	#navBar ul li a
+	{
+		padding: 10px;
+	}
+	#navBar2
+	{
+		
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+
+	#navBar2 ul
+	{
+		list-style: none;
+		width: 100%;
+		text-align: center;
+		display: inline-flex;
+		padding: 0px;
+		margin: 2px auto;
+	}
+
+	#navBar2:first-of-type
+	{
+		border: none;
+	}
+
+	#navBar2 li
+	{
+		margin: 10px;
+
+	}	
+
+	#navBar2 a
+	{
+		text-decoration: none;
+		color: #eee;
+	}
+
+	#navBar2 li:hover
+	{
+		background-color: #DB2976;
+	}
+
+	#navBar2:first-of-type
+	{
+		border-left: 3px solid black;
+	}
+
+	#navBar2:last-of-type
+	{
+		border-right: 3px solid black;
+	}
+
+	footer p, h6
+	{
+	position: relative;
+	top: 0px;
+	margin: 10px auto;
+	}
+}

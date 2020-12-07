@@ -1,0 +1,571 @@
+/***********s*************
+*
+* Final Project: CSS - UsedMB
+* Name: Mike Haryluk
+* Date: June.13.2019
+* Description: UsedMb - A website idea for resale of new or used items
+*
+**************************/
+
+/**
+* Picking colours from pic: https://www.flickr.com/photos/mark6mauno/26078200030/
+*/
+
+body
+{
+
+	background-size: cover;
+	font-family: helvetica, sans serif;
+	color: #fff;
+	background-color: #242f33;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1
+{
+	font-weight: 600;
+	background-image: url("images/fallBackyard.jpg");
+}
+
+header #headerContainer
+{
+	display: flex;
+	justify-content: center;
+}
+
+header
+{
+	background-color: #333131;
+	width: 100%;
+	color: #fff;
+	border-bottom: 3px solid black;
+}
+
+#navBar 
+{
+	width: 100%;
+	font-size: 1em;
+	transition: 0.45s;
+}
+
+#navBar ul
+{
+	list-style: none;
+}
+
+#navBar ul li
+{
+	border: 1px solid black;
+	padding: 0px;
+}
+
+#navBar ul li:first-of-type
+{
+	border: none;
+}
+
+#navBar ul li:nth-of-type(2)
+{
+	border-top: 2px solid black;
+}
+
+#navBar ul li:nth-of-type(4)
+{
+	border-bottom: none;
+}
+
+#navBar ul li a
+{
+	text-decoration: none;
+	color: #edf0f4;
+}
+
+#navBar ul li a:hover
+{
+	padding: 5px;
+	color: #DB2976;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#categories > h3 , #news > h3 , #posts > h3
+{
+	text-align: center;
+	font-size: 2em;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	margin: 0px;
+}
+
+h3
+{
+	margin: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+label
+{
+	margin: 5px 0px 5px 0px ;
+	font-size: 1.3em;
+}
+
+input
+{
+	width: 25%;
+	margin: 5px 0px 15px 0px ;
+	padding: 10px;
+	font-size: 1em;
+}
+
+#headerPictures
+{
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+}
+
+#manitobaPic
+{
+	height: 60px; 
+	width: auto;
+	position: relative;
+	top: -2px;
+	width: auto;
+	transition: .5s;
+	border-radius: 10px;
+}
+
+#coatOfArms
+{
+	margin: 10px;
+	height: 45px;
+	width: auto;
+	transition: .5s;
+}
+h1
+{
+	display: flex;
+	margin: 0px;
+	font-size: 1.5em;
+	width: 100%;
+	background-color: #000;
+	padding: 0px;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	transition: .5s;
+}
+
+ #postAd
+{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	top: 10px;
+	display: flex;
+	border-radius: 4px 15px;
+	padding: 5px;
+	margin: 10px;
+	text-align: center;
+	justify-content: center;
+	background-color: #8abe35;
+  	color: white;
+	text-decoration: none;
+	font-size: 1.5em;
+	width: 170px;
+}
+
+tr > th , a
+{
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-align: left;
+	color: #39366b;
+	text-decoration: none;
+	font-size: 1em;
+	width: 100%;
+}
+
+.title > a
+{
+	font-size: 1.7em;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+
+tbody
+{
+	box-shadow: 0 0 0 1px black;
+  	border-radius: 3px;
+}
+
+p.category
+{
+	align-self: flex-end;
+	vertical-align: text-bottom;
+	padding-right: 8px;
+	padding-left: 8px;
+}
+
+th
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+table
+{
+	width: 100%;
+}
+
+
+#signUp input
+{
+	margin: 2px;
+	margin-top: 0px;
+	padding: 5px;
+	width: 300px;
+}
+
+#createBtn 
+{
+	width: 370px;
+}
+
+#content
+{
+
+	padding: 25px;
+	color: #000;
+	background-color: #d3dde7;
+	margin: 30px auto;
+	width: 70%;
+	border: 2px solid black;
+	border-radius: 5px;
+	transition: .5s;
+}
+
+fieldset > a
+{
+	background-color: lightgray;
+	text-align: center;
+	width: 25%;
+	padding: 15px;
+	text-decoration: none;
+	font-size: 1em;
+	border: 1px solid black;
+}
+
+fieldset > a:hover
+{
+	background-color: white;
+}
+
+#content p
+{
+	font-size: 1.3em;
+}
+
+fieldset
+{
+	flex-direction: column;
+	display: flex;
+
+}
+
+#title
+{
+	width: 35%;
+}
+
+#categoryDropDown
+{
+	font-size: 1.5em;
+	width: 15%;
+}
+
+#description
+{
+	width: 75%
+}
+
+#userValid
+{
+	width: 15%;
+}
+
+#username , #email , #password , #confirmPassword
+{
+	width: 30%;
+}
+
+
+#search
+{
+	display: inline-flex;
+	margin: 10px 5px 0px 0px;
+	width: 120px;
+	padding: 5px 10px 5px 10px;
+}
+
+#searchButton
+{
+	float:right;
+	padding: 4px 7px;
+	margin: 10px 0px 0px 8px;
+	background-color: #DB2976;
+}
+
+#news
+{
+	padding: 35px 0px 0px 0px;
+}
+
+#news h3
+{
+	margin-top: 25px;
+}
+
+#newsItems  > li
+{
+	padding: 5px;
+	margin: 5px;
+}
+
+footer #footerContainer
+{
+	margin-top: 15px;
+	width: 80%;
+	display: flex;
+
+}
+
+
+
+footer 
+{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	padding: 10px;
+	font-size: 0.9em;
+}
+
+#navBar2 ul
+{
+	list-style: none;
+}
+
+#navBar2 a
+{	
+	color:#000;
+	text-decoration: none;
+}
+
+#navBar2 ul li a 
+{
+	color: 000;
+	margin: 5px auto;
+}
+
+#navBar2 li:hover
+{
+	background-color: #DB2976;
+}
+
+#navBar2  h6  p
+{
+	display: flex;
+	align-items: bottom;	
+}
+
+
+
+
+
+
+@media(min-width: 1100px)
+{
+	header 
+	{
+		font-size: 1.2em;
+		height: 28px;
+	}
+
+	#headerContainer
+	{
+		width: 100%;
+	}
+
+	#navBar
+	{
+		width: 100%;
+	}
+	
+	#postItem
+	{
+		margin: 0px;
+		padding: 5px 6px;
+	}
+
+
+	#manitobaPic
+	{
+		margin: 10px;
+		height: 120px; 
+		width: auto;
+	}
+
+	#coatOfArms
+	{
+		margin: 10px;
+		height: 120px;
+		width: auto;
+	}
+
+	#posts h4
+	{
+		font-size: 2.2em;
+	}
+
+	h3
+	{
+
+		font-size: 1.3em;
+	}
+	#navBar2
+	{
+		
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+
+	#navBar2 ul
+	{
+		color: 000;
+		list-style: none;
+		width: 100%;
+		text-align: center;
+		display: inline-flex;
+		padding: 0px;
+		margin: 2px auto;
+	}
+
+	#navBar2:first-of-type
+	{
+		border: none;
+	}
+
+	#navBar2 li
+	{
+		margin: 10px;
+
+	}	
+
+	#navBar2 a
+	{
+		text-decoration: none;
+		color: #000;
+	}
+
+	#navBar2 li:hover
+	{
+		background-color: #DB2976;
+	}
+
+	#navBar2:first-of-type
+	{
+		border-left: 3px solid black;
+	}
+
+	#navBar2:last-of-type
+	{
+		border-right: 3px solid black;
+	}
+
+	footer p, h6
+	{
+	position: relative;
+	top: 0px;
+	margin: 10px auto;
+	}
+
+	footer
+	{
+		top: 0px;
+	}
+}
+
+@media(min-width: 680px)
+{
+		#navBar ul
+	{
+		width: 75%;
+		justify-content: space-between;
+		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0px;
+		margin: 2px auto;
+	}
+
+	#navBar ul li 
+	{
+		border: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	#navBar ul li:nth-of-type(2)
+	{
+		border: none;
+	}
+
+	#navBar ul li a
+	{
+		padding: 10px;
+	}
+
+	#coatOfArms
+	{
+		display: block;
+	}
+
+	#manitobaPic
+	{
+		display: inline-block;
+	}
+
+	#content
+	{
+		top:-65px;
+	}
+
+	h1
+	{
+		font-size: 2.5em;
+	}
+
+	footer
+	{
+		top:-30px;
+	}
+
+	#posts h4
+	{
+		padding: 20px 0px 0px 0px;
+		margin-bottom: 0px;
+		font-size: 1.8em;
+	}
+
+	#posts h5
+	{
+		padding: 0px;
+		margin: 0px;
+	}
