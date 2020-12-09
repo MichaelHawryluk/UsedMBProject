@@ -70,9 +70,13 @@ $categories = $statement->fetchAll();
 					<li><a href="#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
-					<li><a href="login.php">Log in</a></li>
-					<li><a href="signUp.php">Sign up</a></li>
-
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="#">Log in</a></li>
+						<li><a href="signUp.php">Sign up</a></li>
+					<?php else: ?>
+						<p><?php echo $_SESSION['username'] ?></p>
+					<?php endif; ?>	
+					<?= print_r($_SESSION) ?>
 				</ul>
 			</div>
 		</div>

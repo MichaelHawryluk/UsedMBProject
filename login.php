@@ -58,7 +58,7 @@
 		</h1> 
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
-	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processSignIn.php">
+	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processLogin.php">
 		
 			<section id="content">
 				<section id="searchNav">
@@ -69,11 +69,11 @@
 				</section>
 				<fieldset>
 					<label>Username</label>
-					<input id="username" name="username" />
+					<input id="username" name="username"/>
 					<label>Password</label>
-					<input id="password" name="password"></input>
+					<input id="password" name="password" type="password"/>
 					<label>Confirm password</label>
-					<input id="confirmPassword" name="comfirmPassword"></input>
+					<input id="confirmPassword" name="confirmPassword" type="password"/>
 					
 					<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
 					
