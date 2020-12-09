@@ -17,9 +17,29 @@ require 'connect.php';
 
 //Sets and sanitizes the Id
 $postId = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
+$sort = 
+
 
 //Select statement to look for all recors in the blog database and deliver them in reverse order
-$query = "SELECT * FROM posts ORDER BY date DESC";
+$query = "SELECT * FROM posts";
+
+if ($_GET['sort'] == 'price')
+{
+    $query .= " ORDER BY price DESC";
+}
+elseif ($_GET['sort'] == 'loPrice')
+{
+    $query .= " ORDER BY price ASC";
+}
+elseif ($_GET['sort'] == 'category')
+{
+    $query .= " ORDER BY category";
+}
+elseif($_GET['sort'] == 'date')
+{
+    $query .= " ORDER BY date";
+}
+
 $statement = $db->prepare($query);
 $statement->execute();
 $posts = $statement->fetchAll();
@@ -103,8 +123,13 @@ $categories = $statement->fetchAll();
 					<?php foreach($categories as $category): ?>
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
 	         		<?php endforeach; ?>
-	         		<h4>Filter Ads</h4>
-	         			<a href="index.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
+	         		<h4>Filter Ads By:</h4>
+
+	         			<a href="index.php?sort=price">Highest Price</a>
+	         			<a href="index.php?sort=loPrice">Lowest Price</a>
+	         			<a href="index.php?sort=date">Date</a>
+	         			<a href="index.php?sort=category">Category</a>
+
 
 				</section>
 

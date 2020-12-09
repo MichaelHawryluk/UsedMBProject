@@ -11,18 +11,7 @@
 
   $error = false;
 
- /* if($_POST) {
-  	if($_FILES["uploadPic"]["error"] != 0) {
-  		$error = "File Upload Error, you must submit a picture." . $_FILES["uploadPic"]["error"];
-  	} else {
-  		$fileName = basename($_FILES['uploadPic']['name']);
-  		$newName = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $filename;
 
-  		if(!(move_uploaded_file($_FILES['uploadPic']['tmp_name'], $newname))) {
-  			$error = "Sorry a problem occurred when saving the file.";
-  		}
-  	}
-  }*/
 ?>
 
 
@@ -79,7 +68,9 @@
 	              						<?= $category['categoryType'] ?>
 	            				</option>
 	         		 			<?php endforeach; ?>
-	         		 		</select><br><br>
+	         		 		</select>
+	         		 		<p>No valid category? <a href="newCategory.php">Click here to create new category</a></p><br>
+
 							<label  id="upload">Upload Pictures</label><br>
 							<input id="picturePath" type="file" name="picturePath">
 							<label>Description</label>

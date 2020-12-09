@@ -59,31 +59,30 @@ function orientationFlag($orientation) {
   $imageUploaded= isset($_FILES['picturePath']) && ($_FILES['picturePath']['error'] === 0);
   $imageUploadError = isset($_FILES['picturePath']) && ($_FILES['picturePath']['error'] > 0);
 
-if($imageUploaded) {
-  	$imageFileName = $_FILES['picturePath']['name'];
-  	$tempImagePath = $_FILES['picturePath']['tmp_name'];
-  	$newImagePath = fileUploadPath($imageFileName);
-  	if(fileIsAnImage($tempImagePath, $newImagePath)) {
-  		
-		move_uploaded_file($tempImagePath, $newImagePath);
-		
-		$exifData = exif_read_data($newImagePath);
+	if($imageUploaded){
+	  	$imageFileName = $_FILES['picturePath']['name'];
+	  	$tempImagePath = $_FILES['picturePath']['tmp_name'];
+	  	$newImagePath = fileUploadPath($imageFileName);
+	  	if(fileIsAnImage($tempImagePath, $newImagePath)) {
+	  		
+			move_uploaded_file($tempImagePath, $newImagePath);
+			
+			$exifData = exif_read_data($newImagePath);
 
-		$orientation = orientation($exifData);
-		$degrees = orientationFlag($orientation);
+			$orientation = orientation($exifData);
+			$degrees = orientationFlag($orientation);
 
-		$imageData = imagecreatefromjpeg($newImagePath);
-		$imageRotate = imagerotate($imageData, $degrees, 0);
+			$imageData = imagecreatefromjpeg($newImagePath);
+			$imageRotate = imagerotate($imageData, $degrees, 0);
 
-		$image = Image::make(file_get_contents($newImagePath))
-					->resize(300, null, function ($constraint) {
-								$constraint->aspectRatio();
-							})
-					->save($newImagePath,100);
-							
-  	}
+			$image = Image::make(file_get_contents($newImagePath))
+						->resize(300, null, function ($constraint) {
+									$constraint->aspectRatio();
+								})
+						->save($newImagePath,100);
+	  	}
+	}
 
-  }
   if($_POST['command'] === "Post Ad")
   	{
 		//Checks to see if the form was post and if the fields were not empty
