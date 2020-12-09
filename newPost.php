@@ -31,7 +31,7 @@
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<li><a href="newPost.php">Post an Ad</a></li>
-					<li><a href="#Posts">Recent Posts</a></li>
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<li><a href="#">Log in</a></li>
@@ -82,8 +82,8 @@
 				<div id="footerContainer">
 					<div id="navBar2">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="index.html#Posts">Recent Posts</a></li>
+							<li><a href="index.php?sort">Home</a></li>
+							<li><a href="index.php?sort#Posts">Recent Posts</a></li>
 							<li><a href="ProjectContactForm.html">Contact Us</a></li>
 							<li><a href="ProjectTerms.html">Terms</a></li>
 						</ul>

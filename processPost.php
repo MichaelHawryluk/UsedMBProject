@@ -177,7 +177,7 @@ function orientationFlag($orientation) {
 		if(!unlink($path)) {
 			echo"you have an error";
 		} else {
-			header("Location: index.php");
+			header("Location: index.php?sort");
 		}
 
 		//print_r($deleteStatement->errorInfo());
@@ -200,7 +200,7 @@ function orientationFlag($orientation) {
 		if(!unlink($path)) {
 			echo"you have an error";
 		} else {
-			header("Location: index.php");
+			header("Location: index.php?sort");
 		}
 
 		//print_r($deleteStatement->errorInfo());
@@ -225,7 +225,7 @@ function orientationFlag($orientation) {
 		<div id="headerContainer">
 			<div id="navBar">
 				<ul>
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.php?sort">Home</a></li>
 					<li><a href="newPost.php">Post an Ad</a></li>
 					<li><a href="#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
@@ -269,7 +269,7 @@ function orientationFlag($orientation) {
 		<div id="footerContainer">
 			<div id="navBar2">
 				<ul>
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.php?sort">Home</a></li>
 					<li><a href="index.html#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>

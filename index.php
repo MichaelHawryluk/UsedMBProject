@@ -17,28 +17,26 @@ require 'connect.php';
 
 //Sets and sanitizes the Id
 $postId = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
-$sort = 
-
 
 //Select statement to look for all recors in the blog database and deliver them in reverse order
 $query = "SELECT * FROM posts";
-
-if ($_GET['sort'] == 'price')
+if (isset($_GET['sort'])  && $_GET['sort']== 'price')
 {
     $query .= " ORDER BY price DESC";
 }
-elseif ($_GET['sort'] == 'loPrice')
+elseif (isset($_GET['sort']) && $_GET['sort'] == 'loPrice')
 {
     $query .= " ORDER BY price ASC";
 }
-elseif ($_GET['sort'] == 'category')
+elseif (isset($_GET['sort']) && $_GET['sort'] == 'category')
 {
     $query .= " ORDER BY category";
 }
-elseif($_GET['sort'] == 'date')
+elseif (isset($_GET['sort']) && $_GET['sort']== 'date')
 {
     $query .= " ORDER BY date";
-}
+};
+
 
 $statement = $db->prepare($query);
 $statement->execute();
@@ -112,7 +110,7 @@ $categories = $statement->fetchAll();
 			<p><strong>Winter is here!</strong> Gear up with new and used items in your area! <br/><br/></p>
 			<ul id="newsItems">
 				<li></li>
-				<li></li>
+				<li>COVID-19 INFORMATION<a href="https://www.gov.mb.ca/covid19/index.html"> HERE</a></li>
 				<li><a href="https://www.travelmanitoba.com/things-to-do/spring-summer/">Travel Manitoba's Spring and Summer Destinations</a></li> 
 			</ul>		
 		</section>			
@@ -124,9 +122,8 @@ $categories = $statement->fetchAll();
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
 	         		<?php endforeach; ?>
 	         		<h4>Filter Ads By:</h4>
-
-	         			<a href="index.php?sort=price">Highest Price</a>
-	         			<a href="index.php?sort=loPrice">Lowest Price</a>
+						<a href="index.php?sort=loPrice">Lowest Price</a>
+	         			<a href="index.php?sort=price">Highest Price</a>	         			
 	         			<a href="index.php?sort=date">Date</a>
 	         			<a href="index.php?sort=category">Category</a>
 
@@ -144,29 +141,29 @@ $categories = $statement->fetchAll();
 									</th>
 								</tr>
 								<tr>
-									<td>										
-										<?php if($post['picturePath'] != null): ?>
-											<div class="picture">
-												<img src="uploads/<?=$post['picturePath']?>" alt="image">
-											</div>
-										<?php endif; ?>
-										<p>
-										<!-- if checks the length of the content--> 
-										<?php if(strlen($post['description'])<200): ?>
-										<div class="postDescription">
-											<?= $post['description'] ?>
-										</div>
-										<?php endif; ?>
+									<td>
+										<p>										
+											<?php if($post['picturePath'] != null): ?>												
+													<img src="uploads/<?=$post['picturePath']?>" alt="image">												
+											<?php endif; ?>
 										</p>
 										<p>
-										<!-- checks the length of the content and truncates with a read more link-->
-										<?php if(strlen($post['description'])>200): ?>
-											<div class="postContent">
-												<?= substr($post['description'], 0, 200) ?> <a href="show.php?postId=<?= $post['postId']?>">Read more...</a>
+											<!-- if checks the length of the content--> 
+											<?php if(strlen($post['description'])<200): ?>
+											<div class="postDescription">
+												<?= $post['description'] ?>
 											</div>
-										<?php endif; ?>
+											<?php endif; ?>
 										</p>
-										<!-- date format from the database timestamp-->
+										<p>
+											<!-- checks the length of the content and truncates with a read more link-->
+											<?php if(strlen($post['description'])>200): ?>
+												<div class="postContent">
+													<?= substr($post['description'], 0, 200) ?> <a href="show.php?postId=<?= $post['postId']?>">Read more...</a>
+												</div>
+											<?php endif; ?>
+										</p>
+											<!-- date format from the database timestamp-->
 										<p><?=date("F j, Y, h:i A",strtotime($post['date'])) ?></p>
 									</td>
 								</tr>										

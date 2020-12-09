@@ -179,8 +179,8 @@ h1
 
 tr > th , a
 {
-	padding-left: 8px;
-	padding-right: 8px;
+	
+	margin-right: 15px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	text-align: left;
@@ -211,6 +211,11 @@ tbody
   	border-radius: 3px;
 }
 
+td p 
+{
+	margin: 10px;
+}
+
 p.category
 {
 	align-self: flex-end;
@@ -221,6 +226,7 @@ p.category
 
 th
 {
+	padding: 0px;
 	display: flex;
 	justify-content: space-between;
 }
