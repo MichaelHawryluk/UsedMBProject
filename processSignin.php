@@ -50,7 +50,7 @@
 				
 				$statement->execute();
 				//print_r($statement->errorInfo());
-				header("Location: index.php");
+				header("Location: login.php");
 			exit;
 			}
 			else{

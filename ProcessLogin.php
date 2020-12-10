@@ -2,9 +2,31 @@
 
 //Connects to database
 require ('connect.php');
-
 	
-  	if(!empty($_POST['username'])
+	if($_POST['command'] === "Create Account")
+	{
+		header("Location: signUp.php");
+	}
+
+	if($_POST['password'] != $_POST['confirmPassword'])
+	{
+		$errorMessage = "Passwords don't match.";
+	}
+
+	$username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$find = $_POST['username'];
+    $find = preg_replace("#[^0-9a-z]#i", "", $find);
+           
+ 	//Creates a select statement to show the specific record based on the username in the db
+    $userSelect = "SELECT * FROM users WHERE userName LIKE '%$find%'";
+    $statement = $db->prepare($userSelect);
+    $statement->bindValue(':username', $username, PDO::PARAM_INT);
+    $statement->execute();
+    $show = $statement->fetch();
+	
+  	if( $show['userName'] == $_POST['username']
+  		&& $show['password'] == $_POST['password']
+  		&& !empty($_POST['username'])
   		&& (!empty($_POST['password']))
   		&& (!empty($_POST['confirmPassword']))
   		&& $_POST['command'] === "Sign in"
@@ -34,12 +56,16 @@ require ('connect.php');
 	 	else
 	 	{
 	 		$errorMessage = "You must create a profile";
+	 		session_destroy();
 	 	}
 
 	} 
 	else 
 	{
-		$errorMessage = "Username and password not valid!";
+		$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		//print_r($show);
+		$errorMessage = "Sorry " . $username . "! There was an error with your information, click the link below to try again.";
+		session_destroy();
 	}
 ?>
 <!DOCTYPE HTML>

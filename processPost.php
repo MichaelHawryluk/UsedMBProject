@@ -22,7 +22,7 @@ function fileUploadPath($ogFileName, $uploadSubfolder = 'uploads'){
 }	
 
 function fileIsAnImage($tempPath, $newPath) {
-	$allowedMimeTypes = ['image/gif', 'image/jpeg', 'iamge/png'];
+	$allowedMimeTypes = ['image/gif', 'image/jpeg', 'image/png'];
 	$allowedFileExtensions = ['gif', 'jpg', 'jpeg', 'png'];
 
 	$actualFileExtention = pathinfo($newPath, PATHINFO_EXTENSION);
@@ -56,7 +56,7 @@ function orientationFlag($orientation) {
 	
 }
 
-  $imageUploaded= isset($_FILES['picturePath']) && ($_FILES['picturePath']['error'] === 0);
+  $imageUploaded = isset($_FILES['picturePath']) && ($_FILES['picturePath']['error'] === 0);
   $imageUploadError = isset($_FILES['picturePath']) && ($_FILES['picturePath']['error'] > 0);
 
 	if($imageUploaded){
@@ -223,20 +223,26 @@ function orientationFlag($orientation) {
 	<link rel="stylesheet" type="text/css" href="ProjectCSS.css"/>
 </head>
 <body>
-
 	<header>
 		<div id="headerContainer">
 			<div id="navBar">
 				<ul>
-					<li><a href="index.php?sort">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="newPost.php">Post an Ad</a></li>
 					<li><a href="#Posts">Recent Posts</a></li>
-					<li><a href="ProjectContactForm.html">Contact Us</a></li>
+					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
-					<li><a href="login.php">Log in</a></li>
-					<li><a href="signUp.php">Sign up</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Log in</a></li>
+						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+					<?php else: ?>
+						<?= print_r($_SESSION['username'], true) ?>
+						<form id="logout" method="POST" action="logout.php">
+							<button id="logout" name="logout">Logout</button>
+						</form>
+					<?php endif; ?>
 
-				</ul>
+				
 			</div>
 		</div>
 	</header>
@@ -244,26 +250,29 @@ function orientationFlag($orientation) {
 		 <!-- Edited picture from Wikipedia commons hhttps://www.google.com/search?q=map+of+manitoba&rlz=1C1PRFI_enCA825CA843&tbm=isch&source=lnt&tbs=sur:f&sa=X&ved=0ahUKEwiE-pbx0OXiAhUQ0awKHWLBDOgQpwUIIQ&biw=1280&bih=913&dpr=1#imgrc=NZ0-2KhJfCLeLM:-->
 		<h1>
 			<img src="images/UsedMbLogo.png" id="manitobaPic" alt="Key Province"/>
-			Manitoba's best local buy and sell
+			Keepin' it rural. UsedMB.
 			<img src="images/coatOfArms.png" id="coatOfArms" alt="MB Coat of Arms"/>
 		</h1> 
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
 
 		
-	
+	<a href="newPost.php" id="postAd">Post an Ad</a>
 	<section id="content">
+		<?php if(isset($_SESSION['username'])): ?>
+			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
+		<?php endif; ?>
 		<section id="searchNav">
-			<button id= "searchButton">Search</button>
-			<input id="search" name="search" type="text" placeholder="Search for anything...!" autofocus="autofocus" />
+			<form method="POST" action="search.php">
+				
+				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
+				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
+			</form>
 			
-			<a href="newPost.php" id="postAd">Post New Ad</a>
-			<a href="javascript:history.back()" id="postAd">Back to Ad</a>
 		</section>
-
-	<h2>An error occured while processing your post.</h2>
-	<?php if($imageUploadError): ?>
-
+	<h2>An error occurred while processing your post.</h2>
+	<?php if($imageUploadError != 1): ?>
+		<h2>An error occurred while processing your image.</h2>
 		<?php endif; ?>		
 	</p>
 	<a href="index.php">Return Home</a>

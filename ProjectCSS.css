@@ -81,6 +81,7 @@ header
 	color: #edf0f4;
 }
 
+
 #navBar ul li a:hover
 {
 	padding: 5px;
@@ -111,8 +112,22 @@ label
 	font-size: 1.3em;
 }
 
+#contact li
+{
+	list-style: none;
+}
+
+.error
+{
+	color: #f442b3;
+	font-weight: bold;
+	display: none;
+}
+
+
 input
 {
+	display: inline-flex;
 	width: 25%;
 	margin: 5px 0px 15px 0px ;
 	padding: 10px;
@@ -215,6 +230,8 @@ td p
 {
 	margin: 10px;
 }
+
+
 
 p.category
 {
@@ -344,8 +361,7 @@ fieldset
 
 	width: 120px;
 	padding: 5px;
-	margin: 10px 0px 0px 8px;
-	
+	margin: 10px;	
 }
 
 #news

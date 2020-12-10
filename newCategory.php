@@ -26,7 +26,7 @@
 		 <!-- Edited picture from Wikipedia commons hhttps://www.google.com/search?q=map+of+manitoba&rlz=1C1PRFI_enCA825CA843&tbm=isch&source=lnt&tbs=sur:f&sa=X&ved=0ahUKEwiE-pbx0OXiAhUQ0awKHWLBDOgQpwUIIQ&biw=1280&bih=913&dpr=1#imgrc=NZ0-2KhJfCLeLM:-->
 		<h1>
 			<img src="images/UsedMbLogo.png" id="manitobaPic" alt="Key Province"/>
-			Manitoba's best local buy and sell
+			Keepin' it rural. UsedMB.
 			<img src="images/coatOfArms.png" id="coatOfArms" alt="MB Coat of Arms"/>
 		</h1> 
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->

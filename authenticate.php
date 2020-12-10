@@ -6,9 +6,9 @@
        return SITELINK;
     }
 
-  define('ADMIN_LOGIN','mhawryluk');
+  define('ADMIN_LOGIN','mike');
 
-  define('ADMIN_PASSWORD','Password01');
+  define('ADMIN_PASSWORD','123');
 
   if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])
 

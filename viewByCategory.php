@@ -66,10 +66,12 @@ $categories = $statement->fetchAll();
 
    <form id="inventory" method="POST" action="updateDelete.php">
          <fieldset>
-  			<table>
+  			<table><tr>
   				<?php foreach($categories as $category): ?>
-					<p><a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a></p>
+					<td><p><a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a></p></td>
          		<?php endforeach ?>
+         	</tr>
+         </table><table>
 					<?php foreach ($posts as $post): ?>					
 							<tbody id="adBody">
 									<tr>
