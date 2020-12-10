@@ -22,7 +22,6 @@
 	<meta charset="UTF-8"/>
 	<title>UsedMB - Manitoba's local buy and sell</title>
 	<link rel="stylesheet" type="text/css" href="ProjectCSS.css"/>
-
 </head>
 <body>
 	<header>
@@ -31,20 +30,21 @@
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<li><a href="newPost.php">Post an Ad</a></li>
-					<li><a href="index.php#Posts">Recent Posts</a></li>
+					<li><a href="#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
-					<?php if(isset($_SESSION['username'])): ?>
-						<li><a href="#">Log in</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Log in</a></li>
 						<li><a href="signUp.php">Sign up</a></li>
-					<?php else ?>
-						<p><?= $_SESSION['username'] ?></p>
-					<?php endif; ?>	
+						 
+					<?php else: ?>
+						<?= print_r($_SESSION['username'], true) ?>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
 	</header>
-	<section id="headerPictures">
+	<section id = "headerPictures">
 		 <!-- Edited picture from Wikipedia commons hhttps://www.google.com/search?q=map+of+manitoba&rlz=1C1PRFI_enCA825CA843&tbm=isch&source=lnt&tbs=sur:f&sa=X&ved=0ahUKEwiE-pbx0OXiAhUQ0awKHWLBDOgQpwUIIQ&biw=1280&bih=913&dpr=1#imgrc=NZ0-2KhJfCLeLM:-->
 		<h1>
 			<img src="images/UsedMbLogo.png" id="manitobaPic" alt="Key Province"/>
@@ -53,6 +53,18 @@
 		</h1> 
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
+
+		
+	<a href="newPost.php" id="postAd">Post an Ad</a>
+	<section id="content">
+		<section id="searchNav">
+			<form id="search" method="POST" action="search.php">
+				
+				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
+				<input id="search" type="submit" name="command" value="Search Ads"/>
+			</form>
+			
+		</section>
 	
 	<section id="content">
 		<form id="inventory" method="POST" enctype= "multipart/form-data" action="processPost.php">

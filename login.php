@@ -78,7 +78,7 @@
 					<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
 					
 
-					<input type="submit" id="signIn" name="command" Value="Sign in" />
+					<input type="submit" id="Sign in" name="command" Value="Sign in" />
 					
 					<a href="signUp.php">Create Account</a>
 				</fieldset>

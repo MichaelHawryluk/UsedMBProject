@@ -20,19 +20,19 @@ $postId = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
 
 //Select statement to look for all recors in the blog database and deliver them in reverse order
 $query = "SELECT * FROM posts";
-if (isset($_GET['sort'])  && $_GET['sort']== 'price')
+if (isset($_GET['sort'])  && $_GET['sort']== 'Highest Price')
 {
     $query .= " ORDER BY price DESC";
 }
-elseif (isset($_GET['sort']) && $_GET['sort'] == 'loPrice')
+elseif (isset($_GET['sort']) && $_GET['sort'] == 'Lowest Price')
 {
     $query .= " ORDER BY price ASC";
 }
-elseif (isset($_GET['sort']) && $_GET['sort'] == 'category')
+elseif (isset($_GET['sort']) && $_GET['sort'] == 'Category')
 {
     $query .= " ORDER BY category";
 }
-elseif (isset($_GET['sort']) && $_GET['sort']== 'date')
+elseif (isset($_GET['sort']) && $_GET['sort']== 'Date')
 {
     $query .= " ORDER BY date";
 };
@@ -71,13 +71,16 @@ $categories = $statement->fetchAll();
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
-						<li><a href="#">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>
+						<li><a href="login.php">Log in</a></li>
+						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
 					<?php else: ?>
-						<p><?php echo $_SESSION['username'] ?></p>
-					<?php endif; ?>	
-					<?= print_r($_SESSION) ?>
-				</ul>
+						<?= print_r($_SESSION['username'], true) ?>
+						<form id="logout" method="POST" action="logout.php">
+							<button id="logout" name="logout">Logout</button>
+						</form>
+					<?php endif; ?>
+
+				
 			</div>
 		</div>
 	</header>
@@ -94,6 +97,9 @@ $categories = $statement->fetchAll();
 		
 	<a href="newPost.php" id="postAd">Post an Ad</a>
 	<section id="content">
+		<?php if(isset($_SESSION['username'])): ?>
+			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
+		<?php endif; ?>
 		<section id="searchNav">
 			<form id="search" method="POST" action="search.php">
 				
@@ -126,12 +132,16 @@ $categories = $statement->fetchAll();
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
 	         		<?php endforeach; ?>
 	         		<h4>Filter Ads By:</h4>
-						<a href="index.php?sort=loPrice">Lowest Price</a>
-	         			<a href="index.php?sort=price">Highest Price</a>	         			
-	         			<a href="index.php?sort=date">Date</a>
-	         			<a href="index.php?sort=category">Category</a>
-
-
+						<a href="index.php?sort=Highest Price">Lowest Price</a>
+	         			<a href="index.php?sort=Lowest Price">Highest Price</a>	         			
+	         			<a href="index.php?sort=Date">Date</a>
+	         			<a href="index.php?sort=Category">Category</a>
+	         			 
+	         		<p>All ads
+	         			<?php if(isset($_GET['sort'])): ?>
+	         			 > <?= $_GET['sort']?>
+	         		<?php endif; ?>
+	         		</p>
 				</section>
 
 				<?php foreach ($posts as $post): ?>	
