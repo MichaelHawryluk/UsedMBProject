@@ -66,7 +66,7 @@ $categories = $statement->fetchAll();
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
-						<li><a href="signUp.php">Sign in to Post!</a></li>											 
+						<li><a href="login.php">Sign in to Post!</a></li>											 
 					<?php else: ?>
 						<li><a href="newPost.php">Post an Ad</a></li>
 					<?php endif; ?>					

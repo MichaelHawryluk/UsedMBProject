@@ -99,6 +99,18 @@ header
 	margin: 0px;
 }
 
+#signupTable
+{
+
+	display: inline-block;
+	width: 1500px;
+}
+
+#signupTable 
+{
+    text-align: right;
+}
+
 h3
 {
 	margin: 0px;

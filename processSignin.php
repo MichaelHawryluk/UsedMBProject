@@ -1,5 +1,18 @@
 <?php
+require('connect.php');
 	
+$username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$find = $_POST['userName'];
+    $find = preg_replace("#[^0-9a-z]#i", "", $find);
+           
+ 	//Creates a select statement to show the specific record based on the username in the db
+    $userSelect = "SELECT * FROM users WHERE userName LIKE '%$find%'";
+    $statement = $db->prepare($userSelect);
+    $statement->bindValue(':username', $username, PDO::PARAM_INT);
+    $statement->execute();
+    $show = $statement->fetch();
+
+
 	$errorMessage = false;
 
   	if($_POST && (!empty($_POST['userName'])) 
@@ -10,7 +23,9 @@
   			&& (!empty($_POST['province'])) 
   			&& (!empty($_POST['postalCode'])) 
   			&& (!empty($_POST['password'])) 
-  			&& (!empty($_POST['confirmPassword'])))
+  			&& (!empty($_POST['confirmPassword']))
+  			&&  $show['userName'] != $_POST['username']
+  			&& $show['password'] == $_POST['password'])
 	{
 		//print_r($_POST);
 		//print_r($_FILES);

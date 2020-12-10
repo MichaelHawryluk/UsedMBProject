@@ -47,39 +47,57 @@
 	
 	<section id="content">
 		<form id="signUp" method="POST" action="processSignIn.php">
-			<fieldset>
-						<input type="hidden" name="userId">
-						<input type="hidden" name="date">
-						<label>Username</label>
-						<input name="userName" id="userName" type="text"><br>
+				<table id="signupTable">
+					<tr>
+						<td>
+							<label>Full Name</label>
+							<input id="fullName" type="text" name="fullName"><br>
+						</td>
+					</tr>
+					<tr>
+						<td>	
+							<input type="hidden" name="userId">
+							<input type="hidden" name="date">
+							<label>Username</label>
+							<input name="userName" id="userName" type="text"><br>
+							<label>Email</label>
+							<input id="email" type="email" name="email"><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Address</label>
+							<input id="address" type="text" name="address"><br>
 
-						<label>Full Name</label>
-						<input id="fullName" type="text" name="fullName"><br>
+							<label>City</label>
+							<input id="city" type="text" name="city"><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Province</label>
+							<input id="province" type="text" name="province"><br>
 
-						<label>Email</label>
-						<input id="email" type="email" name="email"><br>
-						
-						<label>Address</label>
-						<input id="address" type="text" name="address"><br>
+							<label>Postal Code</label>
+							<input id="postalCode" type="text" name="postalCode"><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Password</label>
+							<input id="password" type="password" name="password"><br>
 
-						<label>City</label>
-						<input id="city" type="text" name="city"><br>
-
-						<label>Province</label>
-						<input id="province" type="text" name="province"><br>
-
-						<label>Postal Code</label>
-						<input id="postalCode" type="text" name="postalCode"><br>
-
-						<label>Password</label>
-						<input id="password" type="password" name="password"><br>
-
-						<label>Confirm Password</label>
-						<input id="confirmPassword" type="password" name="confirmPassword"><br>
-
-						<input id="createBtn" type="submit" name="createBtn" value="Create Profile" />
-		
-			</fieldset>	<br>
+							<label>Confirm Password</label>
+							<input id="confirmPassword" type="password" name="confirmPassword"><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="createBtn" type="submit" name="createBtn" value="Create Profile" />
+						</td>
+					</tr>
+			</table>
+<br>
 		</form>
 		<footer>
 			<div id="footerContainer">

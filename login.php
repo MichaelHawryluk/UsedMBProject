@@ -20,7 +20,6 @@
 	{
 
 	}
-
 ?>
 
 <!DOCTYPE HTML>
@@ -52,9 +51,7 @@
 						<form id="logout" method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
 						</form>
-					<?php endif; ?>
-
-				
+					<?php endif; ?>				
 			</div>
 		</div>
 	</header>
@@ -76,29 +73,22 @@
 			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
 		<?php endif; ?>
 		<section id="searchNav">
-			<form method="POST" action="search.php">
-				
+			<form method="POST" action="search.php">				
 				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
 				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
-			</form>
-			
+			</form>			
 		</section>
-	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processLogin.php">
-		
+	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processLogin.php">		
 				<fieldset>
+					<p>Not a member? <a href="signUp.php">Click here to sign up!</a></p><br>
 					<label>Username</label>
 					<input id="username" name="username"/>
 					<label>Password</label>
 					<input id="password" name="password" type="password"/>
 					<label>Confirm password</label>
-					<input id="confirmPassword" name="confirmPassword" type="password"/>
-					
+					<input id="confirmPassword" name="confirmPassword" type="password"/>					
 					<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
-					
-
 					<input type="submit" id="Sign in" name="command" Value="Sign in" />
-					
-					<input type="submit" id="createAccount" name="command" Value="Create Account" />
 				</fieldset>
 				
 			</section>	
