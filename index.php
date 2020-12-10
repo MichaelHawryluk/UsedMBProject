@@ -20,11 +20,11 @@ $postId = filter_input(INPUT_GET, 'postId', FILTER_SANITIZE_NUMBER_INT);
 
 //Select statement to look for all recors in the blog database and deliver them in reverse order
 $query = "SELECT * FROM posts";
-if (isset($_GET['sort'])  && $_GET['sort']== 'Highest Price')
+if (isset($_GET['sort'])  && $_GET['sort']== 'Highest')
 {
     $query .= " ORDER BY price DESC";
 }
-elseif (isset($_GET['sort']) && $_GET['sort'] == 'Lowest Price')
+elseif (isset($_GET['sort']) && $_GET['sort'] == 'Lowest')
 {
     $query .= " ORDER BY price ASC";
 }
@@ -101,10 +101,10 @@ $categories = $statement->fetchAll();
 			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
 		<?php endif; ?>
 		<section id="searchNav">
-			<form id="search" method="POST" action="search.php">
+			<form method="POST" action="search.php">
 				
 				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
-				<input id="search" type="submit" name="command" value="Search Ads"/>
+				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
 			</form>
 			
 		</section>
@@ -131,9 +131,9 @@ $categories = $statement->fetchAll();
 					<?php foreach($categories as $category): ?>
 		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
 	         		<?php endforeach; ?>
-	         		<h4>Filter Ads By:</h4>
-						<a href="index.php?sort=Highest Price">Lowest Price</a>
-	         			<a href="index.php?sort=Lowest Price">Highest Price</a>	         			
+	         		<h4>Filter Ads By:</h4><br>
+						<a href="index.php?sort=Lowest">Lowest Price</a>
+	         			<a href="index.php?sort=Highest">Highest Price</a>	         			
 	         			<a href="index.php?sort=Date">Date</a>
 	         			<a href="index.php?sort=Category">Category</a>
 	         			 
@@ -156,29 +156,29 @@ $categories = $statement->fetchAll();
 								</tr>
 								<tr>
 									<td>
-										<p>										
+																			
 											<?php if($post['picturePath'] != null): ?>												
 													<img src="uploads/<?=$post['picturePath']?>" alt="image">												
 											<?php endif; ?>
-										</p>
-										<p>
+										
+										
 											<!-- if checks the length of the content--> 
 											<?php if(strlen($post['description'])<200): ?>
 											<div class="postDescription">
 												<?= $post['description'] ?>
 											</div>
 											<?php endif; ?>
-										</p>
-										<p>
+										
+										
 											<!-- checks the length of the content and truncates with a read more link-->
 											<?php if(strlen($post['description'])>200): ?>
 												<div class="postContent">
 													<?= substr($post['description'], 0, 200) ?> <a href="show.php?postId=<?= $post['postId']?>">Read more...</a>
 												</div>
 											<?php endif; ?>
-										</p>
+										
 											<!-- date format from the database timestamp-->
-										<p><?=date("F j, Y, h:i A",strtotime($post['date'])) ?></p>
+										<?=date("F j, Y, h:i A",strtotime($post['date'])) ?>
 									</td>
 								</tr>										
 							</tbody>

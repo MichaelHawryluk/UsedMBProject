@@ -95,9 +95,9 @@ require ('connect.php');
 				<input id="search" type="submit" name="command" value="Search Ads"/>
 			</form>
 			
-			<fieldset>
-				<?= print_r($errorMessage); ?>
-			</fieldset>
+			
+				<h3><?= print_r($errorMessage, true); ?></h3>
+				<a href="javascript:history.back()">Back to Login</a>
 		</section>
 	</section>
 </body>

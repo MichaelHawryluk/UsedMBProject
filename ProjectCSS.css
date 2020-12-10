@@ -333,17 +333,19 @@ fieldset
 #search
 {
 	display: inline-flex;
+	justify-content: space-around;
 	margin: 10px 5px 0px 0px;
-	width: 120px;
-	padding: 5px 10px 5px 10px;
+	width: 300px;
+	padding: 5px;
 }
 
 #searchButton
 {
-	float:right;
-	padding: 4px 7px;
+
+	width: 120px;
+	padding: 5px;
 	margin: 10px 0px 0px 8px;
-	background-color: #DB2976;
+	
 }
 
 #news
