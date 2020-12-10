@@ -135,7 +135,7 @@ $categories = $statement->fetchAll();
 						<a href="index.php?sort=Lowest">Lowest Price</a>
 	         			<a href="index.php?sort=Highest">Highest Price</a>	         			
 	         			<a href="index.php?sort=Date">Date</a>
-	         			<a href="index.php?sort=Category">Category</a>
+	         			<a href="index.php?sort=Category">Category A-Z</a>
 	         			 
 	         		<p>All ads
 	         			<?php if(isset($_GET['sort'])): ?>

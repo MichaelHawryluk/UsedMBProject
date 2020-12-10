@@ -57,19 +57,21 @@
 			$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 			$description = $_POST['description'];
 			$postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_NUMBER_INT);
+			$category = filter_input(INPUT_POST, 'categoryType', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
 
 			//Creates a Update statement, to update the record with that id in the database
-			$updateQuery = "UPDATE posts SET title = :title, description = :description WHERE postId = :postId";
+			$updateQuery = "UPDATE posts SET title = :title, description = :description, category = :categoryType WHERE postId = :postId";
 			$updateStatement = $db->prepare($updateQuery);
 			$updateStatement->bindValue(':title', $title);
 			$updateStatement->bindValue(':description', $description);
+			$updateStatement->binvalue(':categoryType', $category);
 			$updateStatement->bindValue(':postId', $postId, PDO::PARAM_INT);
 
 			$updateStatement->execute();
 
 
-
-			header("Location: index.php");
+			print_r($updateStatement);
+			//header("Location: index.php");
 			exit;
 		}
 		else

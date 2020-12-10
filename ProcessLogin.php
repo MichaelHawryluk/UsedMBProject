@@ -9,16 +9,13 @@ require ('connect.php');
   		&& (!empty($_POST['confirmPassword']))
   		&& $_POST['command'] === "Sign in"
   		&& $_POST['password'] === $_POST['confirmPassword'])
-	{
-
-		 
+  	{ 
   		//Sets and sanitizes the Id
    		$username = filter_input(INPUT_GET, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    		$password = filter_input(INPUT_GET, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    		$find = $_POST['username'];
         $find = preg_replace("#[^0-9a-z]#i", "", $find);
            
-
 	 	//Creates a select statement to show the specific record based on the ID
 	    $userSelect = "SELECT * FROM users WHERE userName LIKE '%$find%'";
 	    $statement = $db->prepare($userSelect);
@@ -26,7 +23,6 @@ require ('connect.php');
 	    $statement->execute();
 	    $show = $statement->fetch();
 	    
-
 	    if(count($show) >= 1)
 	    {
 	    	//print_r($show);
@@ -40,7 +36,9 @@ require ('connect.php');
 	 		$errorMessage = "You must create a profile";
 	 	}
 
-	} else {
+	} 
+	else 
+	{
 		$errorMessage = "Username and password not valid!";
 	}
 ?>

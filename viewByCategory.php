@@ -68,7 +68,7 @@ $categories = $statement->fetchAll();
          <fieldset>
   			<table>
   				<?php foreach($categories as $category): ?>
-					<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
+					<p><a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a></p>
          		<?php endforeach ?>
 					<?php foreach ($posts as $post): ?>					
 							<tbody id="adBody">

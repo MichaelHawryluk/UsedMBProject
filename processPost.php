@@ -131,18 +131,21 @@ function orientationFlag($orientation) {
 		}
 		$description = $_POST['description'];
 		$postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_NUMBER_INT);
+		$categoryType = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 		//Creates a Update statement, to update the record with that id in the database
-		$updateQuery = "UPDATE posts SET title = :title, price = :price, description = :description, picturePath = :picturePath  WHERE postId = :postId";
+		$updateQuery = "UPDATE posts SET title = :title, price = :price, category = :categoryType, description = :description, picturePath = :picturePath  WHERE postId = :postId";
 		$updateStatement = $db->prepare($updateQuery);
 		$updateStatement->bindValue(':title', $title);
 		$updateStatement->bindValue(':price', $price);
+		$updateStatement->bindValue(':categoryType', $categoryType);
 		$updateStatement->bindValue(':description', $description);
 		$updateStatement->bindValue(':picturePath', $picturePath);
 		$updateStatement->bindValue(':postId', $postId, PDO::PARAM_INT);
 
 		$updateStatement->execute();
-
+		//print_r($updateStatement);
+		//print_r($categoryType);
 
 
 		header("Location: index.php");
