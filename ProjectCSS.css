@@ -101,9 +101,7 @@ header
 
 #signupTable
 {
-
 	display: inline-block;
-	width: 1500px;
 }
 
 #signupTable 
@@ -243,7 +241,16 @@ td p
 	margin: 10px;
 }
 
+#categoryDropDown
+{
 
+	min-width: 200px;
+}
+
+option
+{
+	font-size: 1em;
+}
 
 p.category
 {

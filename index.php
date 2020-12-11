@@ -78,7 +78,7 @@ $categories = $statement->fetchAll();
 						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
 					<?php else: ?>
 						<?= print_r($_SESSION['username'], true) ?>
-						<form id="logout" method="POST" action="logout.php">
+						<form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
 						</form>
 					<?php endif; ?>

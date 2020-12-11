@@ -83,7 +83,7 @@
 							<select class="form-control" name="category" id="categoryDropDown">
 							<?php foreach($categories as $category): ?>
 	            				<option>
-	              						<?= $category['categoryType'] ?>
+	              						<p><?= $category['categoryType'] ?></p>
 	            				</option>
 	         		 			<?php endforeach; ?>
 	         		 		</select>

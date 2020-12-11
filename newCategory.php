@@ -1,3 +1,15 @@
+<?php
+
+require 'connect.php';
+
+$query = "SELECT * FROM categories ORDER BY categoryType ASC ";
+$statement = $db->prepare($query);
+$statement->execute();
+
+// Fetch the returned provinces as an array of hashes.
+$categories = $statement->fetchAll();
+?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -11,14 +23,25 @@
 			<div id="navBar">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="newPost.php">Post an Ad</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Sign in to Post!</a></li>											 
+					<?php else: ?>
+						<li><a href="newPost.php">Post an Ad</a></li>
+					<?php endif; ?>					
 					<li><a href="#Posts">Recent Posts</a></li>
-					<li><a href="ProjectContactForm.html">Contact Us</a></li>
+					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
-					<li><a href="login.php">Log in</a></li>
-					<li><a href="signUp.php">Sign up</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Log in</a></li>
+						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+					<?php else: ?>
+						<?= print_r($_SESSION['username'], true) ?>
+						<form id="logout" method="POST" action="logout.php">
+							<button id="logout" name="logout">Logout</button>
+						</form>
+					<?php endif; ?>
 
-				</ul>
+				
 			</div>
 		</div>
 	</header>
@@ -32,20 +55,35 @@
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
 
-		
-	<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php if(isset($_SESSION['username'])): ?>	
+		<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php endif; ?>	
 	<section id="content">
+		<?php if(isset($_SESSION['username'])): ?>
+			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
+		<?php endif; ?>
 		<section id="searchNav">
-			<form id="search" method="POST" action="search.php">
+			<form method="POST" action="search.php">
 				
-				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
-				<input id="search" type="submit" name="command" value="Search Ads"/>
+				<input id="search" name="search" type="text" placeholder="Search" />
+				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
 			</form>
 			
 		</section>
-		<fieldset>
-			
-		</fieldset>
+		<h3 id="AddCategory">Add Category</h3>
+					<form method="POST" action="processCategoryAdd.php">
+						<input id="newCategory" type="text" name="newCategory" autofocus="autofocus" />
+						<input id="addCategory" type="submit" name="command" value="Add Category"/>
+					</form>
+		<br><table>
+			<tr>
+				<td>
+					<?php foreach($categories as $category): ?>
+		            	<a href="viewByCategory.php?category=<?= $category['categoryType']?>"><?= $category['categoryType']?></a>
+	         		<?php endforeach; ?>
+				</td>
+			</tr>
+		</table>
 
 			<footer>
 			<div id="footerContainer">
