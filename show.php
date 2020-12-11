@@ -32,18 +32,19 @@
           <?php else: ?>
             <li><a href="newPost.php">Post an Ad</a></li>
           <?php endif; ?>         
-          <li><a href="#Posts">Recent Posts</a></li>
+          <li><a href="index.php#Posts">Recent Posts</a></li>
           <li><a href="ProjectContactForm.php">Contact Us</a></li>
           <li><a href="ProjectTerms.html">Terms</a></li>
           <?php if(!isset($_SESSION['username'])): ?>
             <li><a href="login.php">Log in</a></li>
-            <li><a href="signUp.php">Sign up</a></li> </ul>          
+            <li><a href="signUp.php">Sign up</a></li>
           <?php else: ?>
-            <?= print_r($_SESSION['username'], true) ?>
+            <li><p><?= print_r($_SESSION['username'], true) ?></p></li>
             <form method="POST" action="logout.php">
               <button id="logout" name="logout">Logout</button>
             </form>
           <?php endif; ?>
+        </ul>
       </div>
     </div>
   </header>

@@ -34,7 +34,7 @@ $categories = $statement->fetchAll();
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<li><a href="newPost.php">Post an Ad</a></li>
-					<li><a href="#Posts">Recent Posts</a></li>
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.html">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<li><a href="login.php">Log in</a></li>

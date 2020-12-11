@@ -29,21 +29,24 @@
 			<div id="navBar">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="newPost.php">Post an Ad</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Sign in to Post!</a></li>											 
+					<?php else: ?>
+						<li><a href="newPost.php">Post an Ad</a></li>
+					<?php endif; ?>					
 					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
-					<li><a href="ProjectTerms.html">Terms</a></li>
+					<li><a href="ProjectTerms.php">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>
-						 
+						<li><a href="signUp.php">Sign up</a></li>				 
 					<?php else: ?>
-						<?= print_r($_SESSION['username'], true) ?>
-						<form id="logout" method="POST" action="logout.php">
+						<li><?= print_r($_SESSION['username'], true) ?></li>
+						<li><form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
-						</form>
+						</form></li>
 					<?php endif; ?>
-				</ul>
+				</ul>				
 			</div>
 		</div>
 	</header>
@@ -57,19 +60,21 @@
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
 
-		
-	<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php if(isset($_SESSION['username'])): ?>	
+		<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php endif; ?>	
 	<section id="content">
+		<?php if(isset($_SESSION['username'])): ?>
+			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
+		<?php endif; ?>
 		<section id="searchNav">
-			<form id="search" method="POST" action="search.php">
+			<form method="POST" action="search.php">
 				
 				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
-				<input id="search" type="submit" name="command" value="Search Ads"/>
+				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
 			</form>
 			
 		</section>
-	
-	<section id="content">
 		<form id="inventory" method="POST" enctype= "multipart/form-data" action="processPost.php">
 				<fieldset>
 					<?php if ($error): ?>
@@ -83,7 +88,7 @@
 							<select class="form-control" name="category" id="categoryDropDown">
 							<?php foreach($categories as $category): ?>
 	            				<option>
-	              						<p><?= $category['categoryType'] ?></p>
+	              						<?= $category['categoryType'] ?>
 	            				</option>
 	         		 			<?php endforeach; ?>
 	         		 		</select>
@@ -94,7 +99,7 @@
 							<label>Description</label>
 							<textarea id="description" name="description" rows="10" placeholder="Write a detialed description about what you're selling here..."></textarea><br>
 						
-							<input id="postAd" type="submit" name="command" value="Post Ad"/>
+							<input id="post" type="submit" name="command" value="Post Ad"/>
 				</fieldset>	<br><br>
 			<footer>
 				<div id="footerContainer">
@@ -103,7 +108,7 @@
 							<li><a href="index.php?sort">Home</a></li>
 							<li><a href="index.php?sort#Posts">Recent Posts</a></li>
 							<li><a href="ProjectContactForm.php">Contact Us</a></li>
-							<li><a href="ProjectTerms.html">Terms</a></li>
+							<li><a href="ProjectTerms.php">Terms</a></li>
 						</ul>
 					</div>
 					<p>A site to keep it local.</p>

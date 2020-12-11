@@ -228,21 +228,24 @@ function orientationFlag($orientation) {
 			<div id="navBar">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="newPost.php">Post an Ad</a></li>
-					<li><a href="#Posts">Recent Posts</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Sign in to Post!</a></li>											 
+					<?php else: ?>
+						<li><a href="newPost.php">Post an Ad</a></li>
+					<?php endif; ?>					
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+						<li><a href="signUp.php">Sign up</a></li>				 
 					<?php else: ?>
-						<?= print_r($_SESSION['username'], true) ?>
-						<form id="logout" method="POST" action="logout.php">
+						<li><?= print_r($_SESSION['username'], true) ?></li>
+						<li><form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
-						</form>
+						</form></li>
 					<?php endif; ?>
-
-				
+				</ul>				
 			</div>
 		</div>
 	</header>
@@ -256,8 +259,9 @@ function orientationFlag($orientation) {
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
 
-		
-	<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php if(isset($_SESSION['username'])): ?>	
+		<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php endif; ?>	
 	<section id="content">
 		<?php if(isset($_SESSION['username'])): ?>
 			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
@@ -267,16 +271,14 @@ function orientationFlag($orientation) {
 				
 				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
 				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
-			</form>
-			
+			</form>			
 		</section>
 	<h2>An error occurred while processing your post.</h2>
+	<p>Click <a href="javascript:history.back()">here to go back to ad.</a></p>
 	<?php if($imageUploadError != 1): ?>
 		<h2>An error occurred while processing your image.</h2>
 		<?php endif; ?>		
-	</p>
-	<a href="index.php">Return Home</a>
-
+	<br><a href="index.php">Return Home</a>
 	<footer>
 		<div id="footerContainer">
 			<div id="navBar2">
@@ -291,5 +293,6 @@ function orientationFlag($orientation) {
 			<h6>Version 1.2 UsedMB 2020 &#169; &#127464;&#127462;</h6>
 		</div>
 	</footer>
+</section>
 </body>
 </html>

@@ -49,21 +49,24 @@
 			<div id="navBar">
 				<ul>
 					<li><a href="index.php">Home</a></li>
-					<li><a href="newPost.php">Post an Ad</a></li>
-					<li><a href="#Posts">Recent Posts</a></li>
+					<?php if(!isset($_SESSION['username'])): ?>
+						<li><a href="login.php">Sign in to Post!</a></li>											 
+					<?php else: ?>
+						<li><a href="newPost.php">Post an Ad</a></li>
+					<?php endif; ?>					
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+						<li><a href="signUp.php">Sign up</a></li>				 
 					<?php else: ?>
-						<?= print_r($_SESSION['username'], true) ?>
-						<form id="logout" method="POST" action="logout.php">
+						<li><?= print_r($_SESSION['username'], true) ?></li>
+						<li><form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
-						</form>
+						</form></li>
 					<?php endif; ?>
-
-				
+				</ul>				
 			</div>
 		</div>
 	</header>
@@ -77,8 +80,9 @@
 		 <!-- Picture from wikipedia commons https://upload.wikimedia.org/wikipedia/commons/1/17/Simple_arms_of_Manitoba.svg -->
 	</section>
 
-		
-	<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php if(isset($_SESSION['username'])): ?>	
+		<a href="newPost.php" id="postAd">Post an Ad</a>
+	<?php endif; ?>	
 	<section id="content">
 		<?php if(isset($_SESSION['username'])): ?>
 			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
@@ -89,52 +93,46 @@
 				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
 				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
 			</form>
-			
-		</section>
-		
-	<form id="editPost" method="POST" enctype= "multipart/form-data" action="processPost.php">
-		
-			<section id="content">
+		</section>		
+		<form id="editPost" method="POST" enctype= "multipart/form-data" action="processPost.php">
+					<fieldset>
+						<label>Title</label>
+						<input id="title" name="title" value="<?=$select['title'] ?>" />
+						<label for="price">Price in $(CAD)</label>
+						<input name="price" id="price" type="number" value="<?=$select['price'] ?>"/><br><br>
+						<select class="form-control" name="category" id="categoryDropDown">
+							<?php foreach($categories as $category): ?>
+		            			<option>
+		              					<?= $category['categoryType'] ?>
+		            			</option>
+		         		 		<?php endforeach; ?>
+		         		 </select><br><br>
+						<label>Description</label>
+						<textarea id="description" name="description" rows="15" cols="30"><?= $select['description']?></textarea><br>
+						<?php if($select['picturePath'] != null): ?>
+												<div class="picture">
+													<img src="uploads/<?=$select['picturePath']?>" alt="image">
+													<br><input type="submit" id="DeletePic" name="command" value="Delete Picture" onclick="return confirm('Are you sure you want to delete this picture?')"/>
+												</div>
+						<?php else: ?>
+							<label  id="upload">Upload Pictures</label><br>
+								<input id="picturePath" type="file" name="picturePath">
+						<?php endif; ?>
+						<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
+						<input type="hidden" name="picturePath" value="<?= $select['picturePath'] ?>" />
 
-				<fieldset>
-					<label>Title</label>
-					<input id="title" name="title" value="<?=$select['title'] ?>" />
-					<label for="price">Price in $(CAD)</label>
-					<input name="price" id="price" type="number" value="<?=$select['price'] ?>"/><br><br>
-					<select class="form-control" name="category" id="categoryDropDown">
-						<?php foreach($categories as $category): ?>
-	            			<option>
-	              					<?= $category['categoryType'] ?>
-	            			</option>
-	         		 		<?php endforeach; ?>
-	         		 </select><br><br>
-					<label>Description</label>
-					<textarea id="description" name="description" rows="15" cols="30"><?= $select['description']?></textarea><br>
-					<?php if($select['picturePath'] != null): ?>
-											<div class="picture">
-												<img src="uploads/<?=$select['picturePath']?>" alt="image">
-												<br><input type="submit" id="DeletePic" name="command" value="Delete Picture"onclick="return confirm('Are you sure you want to delete this picture?')"/>
-											</div>
-					<?php else: ?>
-						<label  id="upload">Upload Pictures</label><br>
-							<input id="picturePath" type="file" name="picturePath">
-					<?php endif; ?>
-					<input type="hidden" name="postId" value="<?= $select['postId'] ?>" />
-					<input type="hidden" name="picturePath" value="<?= $select['picturePath'] ?>" />
-
-					<input type="submit" id="Update" name="command" value="Update" />
-				
-					<input type="submit" id="Delete" name="command" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')"/>
+						<input type="submit" id="Update" name="command" value="Update" />
 					
-				</fieldset>
-			</section>	
-	</form>
+						<input type="submit" id="Delete" name="command" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')"/>
+						
+					</fieldset>	
+		</form>
+	</section>
 	<script src="ckeditor5/ckeditor.js"></script>
 	<script>	
 		ClassicEditor.create(document.getElementById('description'));
 	</script>
 	<!--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  	<script>tinymce.init({forced_root_block: false, selector:'textarea'});</script>
-
+  	<script>tinymce.init({forced_root_block: false, selector:'textarea'});</script>-->
 </body>
 </html>

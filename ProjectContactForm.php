@@ -21,24 +21,23 @@
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
-						<li><a href="signUp.php">Sign in to Post!</a></li>											 
+						<li><a href="login.php">Sign in to Post!</a></li>											 
 					<?php else: ?>
 						<li><a href="newPost.php">Post an Ad</a></li>
 					<?php endif; ?>					
-					<li><a href="index.php#Posts">Recent Posts</a></li>
+					<li><a href="#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+						<li><a href="signUp.php">Sign up</a></li>				 
 					<?php else: ?>
-						<?= print_r($_SESSION['username'], true) ?>
-						<form id="logout" method="POST" action="logout.php">
+						<li><?= print_r($_SESSION['username'], true) ?></li>
+						<li><form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
-						</form>
+						</form></li>
 					<?php endif; ?>
-
-				
+				</ul>				
 			</div>
 		</div>
 	</header>
@@ -59,16 +58,15 @@
 		<?php if(isset($_SESSION['username'])): ?>
 			<p>Hi, <?= print_r($_SESSION['username'], true) ?>!</p>
 		<?php endif; ?>
-			<section id="searchNav">
-				<form method="POST" action="search.php">
-					
-					<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
-					<input id="searchButton" type="submit" name="command" value="Search Ads"/>
-				</form>
+		<section id="searchNav">
+			<form method="POST" action="search.php">
 				
-			</section>
-		<form id="contact"
-			      method="post">
+				<input id="search" name="search" type="text" placeholder="Search" autofocus="autofocus" />
+				<input id="searchButton" type="submit" name="command" value="Search Ads"/>
+			</form>
+			
+		</section>
+		<form method="post">
 			<fieldset>
 				<legend>Your Information</legend>
 				<div id="contact">
@@ -117,5 +115,6 @@
 				</div>
 			</footer>
 	</section>
+	
 </body>
 </html>

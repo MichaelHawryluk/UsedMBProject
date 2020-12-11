@@ -41,7 +41,7 @@ require 'connect.php';
 					<?php else: ?>
 						<li><a href="newPost.php">Post an Ad</a></li>
 					<?php endif; ?>					
-					<li><a href="#Posts">Recent Posts</a></li>
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
 					<li><a href="ProjectTerms.html">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
@@ -137,6 +137,20 @@ require 'connect.php';
 						</table>
 					<?php endforeach; ?>
 				<?php endif; ?>
+			<footer>
+			<div id="footerContainer">
+				<div id="navBar2">
+					<ul>
+						<li><a href="index.php">Home</a></li>
+						<li><a href="index.php#Posts">Recent Posts</a></li>
+						<li><a href="ProjectContactForm.php">Contact Us</a></li>
+						<li><a href="ProjectTerms.php">Terms</a></li>
+					</ul>
+				</div>
+				<p>A site to keep it local.</p>
+				<h6>Version 1.2 UsedMB 2020 &#169; &#127464;&#127462;</h6>
+			</div>
+		</footer>
 			</section>
 	</section>
 </body>

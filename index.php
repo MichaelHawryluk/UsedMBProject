@@ -72,18 +72,17 @@ $categories = $statement->fetchAll();
 					<?php endif; ?>					
 					<li><a href="#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
-					<li><a href="ProjectTerms.html">Terms</a></li>
+					<li><a href="ProjectTerms.php">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="signUp.php">Sign up</a></li>	</ul>					 
+						<li><a href="signUp.php">Sign up</a></li>				 
 					<?php else: ?>
-						<?= print_r($_SESSION['username'], true) ?>
-						<form method="POST" action="logout.php">
+						<li><?= print_r($_SESSION['username'], true) ?></li>
+						<li><form method="POST" action="logout.php">
 							<button id="logout" name="logout">Logout</button>
-						</form>
+						</form></li>
 					<?php endif; ?>
-
-				
+				</ul>				
 			</div>
 		</div>
 	</header>
@@ -196,8 +195,8 @@ $categories = $statement->fetchAll();
 					<ul>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="index.php#Posts">Recent Posts</a></li>
-						<li><a href="ProjectContactForm.html">Contact Us</a></li>
-						<li><a href="ProjectTerms.html">Terms</a></li>
+						<li><a href="ProjectContactForm.php">Contact Us</a></li>
+						<li><a href="ProjectTerms.php">Terms</a></li>
 					</ul>
 				</div>
 				<p>A site to keep it local.</p>
