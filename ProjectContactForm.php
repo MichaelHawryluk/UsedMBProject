@@ -1,11 +1,6 @@
-<!--------s------------
-    
-    Final Project: UsedMB
-    Name: Mike Hawryluk
-    Date: June.12.2019
-    Description: A website idea for resale of new or used items..... Kinda like Kijiji(but someday better)
-
----------------------->
+<?php
+	require 'connect.php';
+?>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -25,9 +20,9 @@
 					<?php else: ?>
 						<li><a href="newPost.php">Post an Ad</a></li>
 					<?php endif; ?>					
-					<li><a href="#Posts">Recent Posts</a></li>
+					<li><a href="index.php#Posts">Recent Posts</a></li>
 					<li><a href="ProjectContactForm.php">Contact Us</a></li>
-					<li><a href="ProjectTerms.html">Terms</a></li>
+					<li><a href="ProjectTerms.php">Terms</a></li>
 					<?php if(!isset($_SESSION['username'])): ?>
 						<li><a href="login.php">Log in</a></li>
 						<li><a href="signUp.php">Sign up</a></li>				 
@@ -107,7 +102,7 @@
 							<li><a href="index.php">Home</a></li>
 							<li><a href="index.php#Posts">Recent Posts</a></li>
 							<li><a href="ProjectContactForm.php">Contact Us</a></li>
-							<li><a href="ProjectTerms.html">Terms</a></li>
+							<li><a href="ProjectTerms.php">Terms</a></li>
 						</ul>
 					</div>
 					<p>A site to keep it local.</p>

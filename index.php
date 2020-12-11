@@ -122,7 +122,6 @@ $categories = $statement->fetchAll();
 			</ol>
 			<p><strong>Winter is here!</strong> Gear up with new and used items in your area! <br/><br/></p>
 			<ul id="newsItems">
-				<li></li>
 				<li>COVID-19 INFORMATION<a href="https://www.gov.mb.ca/covid19/index.html"> HERE</a></li>
 				<li><a href="https://www.travelmanitoba.com/things-to-do/spring-summer/">Travel Manitoba's Spring and Summer Destinations</a></li> 
 			</ul>		
